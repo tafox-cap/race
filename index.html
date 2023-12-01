@@ -1,1 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Race Simulation</title>
+</head>
+<body>
+  <h1>Race Simulation</h1>
+  <form id="joinRaceForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" required>
+    <button type="button" onclick="joinRace()">Join Race</button>
+  </form>
+
+  <script>
+    function joinRace() {
+      var username = document.getElementById('username').value;
+      if (username.trim() !== '') {
+        // Send a request to add the participant
+        fetch('participants.txt?username=' + encodeURIComponent(username), { method: 'POST' })
+          .then(response => {
+            if (response.ok) {
+              console.log('Participant ' + username + ' added.');
+              // Add logic to update the UI or provide feedback to the user
+            } else {
+              console.error('Failed to add participant.');
+            }
+          })
+          .catch(error => console.error('Error:', error));
+      } else {
+        console.error('Invalid username.');
+      }
+    }
+  </script>
+</body>
+</html>
 
