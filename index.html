@@ -1,67 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Race Simulation</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitch Race</title>
 </head>
 <body>
-  <h1>Race Simulation</h1>
-  <form id="joinRaceForm">
-    <label for="username">Username:</label>
-    <input type="text" id="username" required>
-    <button type="button" onclick="joinRace()">Join Race</button>
-    <button type="button" onclick="startRace()">Start Race</button>
-    <button type="button" onclick="endRace()">End Race</button>
-  </form>
 
-  <script>
-    function joinRace() {
-      var username = document.getElementById('username').value;
-      if (username.trim() !== '') {
-        // Send a request to add the participant
-        fetch('https://tafox-cap.github.io/race/update-state.php?command=addParticipant&user=' + encodeURIComponent(username), { method: 'POST' })
-          .then(response => {
-            if (response.ok) {
-              console.log('Participant ' + username + ' added.');
-              // Add logic to update the UI or provide feedback to the user
-            } else {
-              console.error('Failed to add participant.');
-            }
-          })
-          .catch(error => console.error('Error:', error));
-      } else {
-        console.error('Invalid username.');
-      }
-    }
+<script>
+    // Initialize participants array
+    var participants = [];
 
+    // Function to start the race
     function startRace() {
-      // Send a request to start the race
-      fetch('https://tafox-cap.github.io/race/update-state.php?command=startRace', { method: 'POST' })
-        .then(response => {
-          if (response.ok) {
-            console.log('Race started.');
-            // Add logic to update the UI or provide feedback to the user
-          } else {
-            console.error('Failed to start the race.');
-          }
-        })
-        .catch(error => console.error('Error:', error));
+        participants = [];
+        // You can perform any other initialization here
+        alert("Race has started! Type !race to join.");
     }
 
-    function endRace() {
-      // Send a request to end the race
-      fetch('https://tafox-cap.github.io/race/update-state.php?command=endRace', { method: 'POST' })
-        .then(response => {
-          if (response.ok) {
-            console.log('Race ended.');
-            // Add logic to update the UI or provide feedback to the user
-          } else {
-            console.error('Failed to end the race.');
-          }
-        })
-        .catch(error => console.error('Error:', error));
+    // Function to add a participant to the race
+    function addParticipant(username) {
+        participants.push(username);
     }
-  </script>
+
+    // Function to end the race and select a winner
+    function endRace() {
+        var winner = participants[Math.floor(Math.random() * participants.length)];
+        // You can perform any other actions with the winner here
+        alert("The race has ended! The winner is: " + winner);
+    }
+
+    // Expose functions to Nightbot commands
+    window.startRace = startRace;
+    window.addParticipant = addParticipant;
+    window.endRace = endRace;
+</script>
+
 </body>
 </html>
