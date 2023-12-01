@@ -1,0 +1,20 @@
+# update-state
+#!/bin/bash
+
+COMMAND=$1
+
+case $COMMAND in
+  "addParticipant")
+    USER=$2
+    echo $USER >> participants.txt
+    ;;
+  "startRace")
+    # Logic to start the race
+    ;;
+  "endRace")
+    # Logic to end the race and determine the winner
+    ;;
+  *)
+    echo "Unknown command"
+    ;;
+esac
