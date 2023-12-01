@@ -14,7 +14,7 @@
     function startRace() {
         // Nightbot response for starting the race
         $.post('http://127.0.0.1:5000/start-race', function(response) {
-            $(document.body).trigger("addMessage", { message: response.message });
+            $(document.body).trigger("addMessage", { message: response });
         });
     }
 
@@ -22,7 +22,7 @@
     function addParticipant(username) {
         // Nightbot response for adding a participant
         $.post('http://127.0.0.1:5000/add-participant', { username: username }, function(response) {
-            $(document.body).trigger("addMessage", { message: response.message });
+            $(document.body).trigger("addMessage", { message: response });
         });
     }
 
@@ -30,7 +30,7 @@
     function endRace() {
         // Nightbot response for ending the race
         $.post('http://127.0.0.1:5000/end-race', function(response) {
-            $(document.body).trigger("addMessage", { message: response.message });
+            $(document.body).trigger("addMessage", { message: response });
         });
     }
 
