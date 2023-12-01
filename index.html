@@ -10,26 +10,28 @@
 <body>
 
 <script>
-    // Initialize participants array
-    var participants = [];
-
     // Function to start the race
     function startRace() {
-        participants = [];
         // Nightbot response for starting the race
-        $(document.body).trigger("addMessage", { message: "Race has started! Type !race to join." });
+        $.post('http://127.0.0.1:5000/start-race', function(response) {
+            $(document.body).trigger("addMessage", { message: response.message });
+        });
     }
 
     // Function to add a participant to the race
     function addParticipant(username) {
-        participants.push(username);
+        // Nightbot response for adding a participant
+        $.post('http://127.0.0.1:5000/add-participant', { username: username }, function(response) {
+            $(document.body).trigger("addMessage", { message: response.message });
+        });
     }
 
     // Function to end the race and select a winner
     function endRace() {
-        var winner = participants[Math.floor(Math.random() * participants.length)];
         // Nightbot response for ending the race
-        $(document.body).trigger("addMessage", { message: "The race has ended! The winner is: " + winner });
+        $.post('http://127.0.0.1:5000/end-race', function(response) {
+            $(document.body).trigger("addMessage", { message: response.message });
+        });
     }
 
     // Expose functions to Nightbot commands
