@@ -20,7 +20,7 @@
       var username = document.getElementById('username').value;
       if (username.trim() !== '') {
         // Send a request to add the participant
-        fetch('participants.txt?username=' + encodeURIComponent(username), { method: 'POST' })
+        fetch('update-state.php?command=addParticipant&user=' + encodeURIComponent(username), { method: 'POST' })
           .then(response => {
             if (response.ok) {
               console.log('Participant ' + username + ' added.');
@@ -36,15 +36,31 @@
     }
 
     function startRace() {
-      // Add logic to start the race
-      console.log('Race started.');
-      // You can send a request to perform race start actions if needed
+      // Send a request to start the race
+      fetch('update-state.php?command=startRace', { method: 'POST' })
+        .then(response => {
+          if (response.ok) {
+            console.log('Race started.');
+            // Add logic to update the UI or provide feedback to the user
+          } else {
+            console.error('Failed to start the race.');
+          }
+        })
+        .catch(error => console.error('Error:', error));
     }
 
     function endRace() {
-      // Add logic to end the race
-      console.log('Race ended.');
-      // You can send a request to perform race end actions if needed
+      // Send a request to end the race
+      fetch('update-state.php?command=endRace', { method: 'POST' })
+        .then(response => {
+          if (response.ok) {
+            console.log('Race ended.');
+            // Add logic to update the UI or provide feedback to the user
+          } else {
+            console.error('Failed to end the race.');
+          }
+        })
+        .catch(error => console.error('Error:', error));
     }
   </script>
 </body>
