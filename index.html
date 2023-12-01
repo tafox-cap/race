@@ -12,24 +12,30 @@
 <script>
     // Function to start the race
     function startRace() {
+        console.log('startRace function called');
         // Nightbot response for starting the race
         $.post('http://127.0.0.1:5000/start-race', function(response) {
+            console.log('startRace response:', response);
             $(document.body).trigger("addMessage", { message: response });
         });
     }
 
     // Function to add a participant to the race
     function addParticipant(username) {
+        console.log('addParticipant function called');
         // Nightbot response for adding a participant
         $.post('http://127.0.0.1:5000/add-participant', { username: username }, function(response) {
+            console.log('addParticipant response:', response);
             $(document.body).trigger("addMessage", { message: response });
         });
     }
 
     // Function to end the race and select a winner
     function endRace() {
+        console.log('endRace function called');
         // Nightbot response for ending the race
         $.post('http://127.0.0.1:5000/end-race', function(response) {
+            console.log('endRace response:', response);
             $(document.body).trigger("addMessage", { message: response });
         });
     }
