@@ -15,8 +15,8 @@
     // Function to start the race
     function startRace() {
         participants = [];
-        // You can perform any other initialization here
-        alert("Race has started! Type !race to join.");
+        // Nightbot response for starting the race
+        $(document.body).trigger("addMessage", { message: "Race has started! Type !race to join." });
     }
 
     // Function to add a participant to the race
@@ -27,8 +27,8 @@
     // Function to end the race and select a winner
     function endRace() {
         var winner = participants[Math.floor(Math.random() * participants.length)];
-        // You can perform any other actions with the winner here
-        alert("The race has ended! The winner is: " + winner);
+        // Nightbot response for ending the race
+        $(document.body).trigger("addMessage", { message: "The race has ended! The winner is: " + winner });
     }
 
     // Expose functions to Nightbot commands
