@@ -5,7 +5,15 @@ switch ($command) {
     case 'addParticipant':
         $user = isset($_GET['user']) ? $_GET['user'] : '';
         if ($user) {
-            file_put_contents('participants.txt', $user . PHP_EOL, FILE_APPEND);
+            // Read existing participants from file
+            $participants = file('participants.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+            // Add the new participant
+            $participants[] = $user;
+
+            // Write participants back to file
+            file_put_contents('participants.txt', implode(PHP_EOL, $participants));
+
             echo "Participant $user added.";
         } else {
             echo "Invalid username.";
