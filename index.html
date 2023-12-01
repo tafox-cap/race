@@ -20,7 +20,7 @@
       var username = document.getElementById('username').value;
       if (username.trim() !== '') {
         // Send a request to add the participant
-        fetch('update-state.php?command=addParticipant&user=' + encodeURIComponent(username), { method: 'POST' })
+        fetch('https://tafox-cap.github.io/race/update-state.php?command=addParticipant&user=' + encodeURIComponent(username), { method: 'POST' })
           .then(response => {
             if (response.ok) {
               console.log('Participant ' + username + ' added.');
@@ -37,7 +37,7 @@
 
     function startRace() {
       // Send a request to start the race
-      fetch('update-state.php?command=startRace', { method: 'POST' })
+      fetch('https://tafox-cap.github.io/race/update-state.php?command=startRace', { method: 'POST' })
         .then(response => {
           if (response.ok) {
             console.log('Race started.');
@@ -51,7 +51,7 @@
 
     function endRace() {
       // Send a request to end the race
-      fetch('update-state.php?command=endRace', { method: 'POST' })
+      fetch('https://tafox-cap.github.io/race/update-state.php?command=endRace', { method: 'POST' })
         .then(response => {
           if (response.ok) {
             console.log('Race ended.');
