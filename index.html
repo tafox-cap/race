@@ -11,6 +11,8 @@
     <label for="username">Username:</label>
     <input type="text" id="username" required>
     <button type="button" onclick="joinRace()">Join Race</button>
+    <button type="button" onclick="startRace()">Start Race</button>
+    <button type="button" onclick="endRace()">End Race</button>
   </form>
 
   <script>
@@ -32,7 +34,18 @@
         console.error('Invalid username.');
       }
     }
+
+    function startRace() {
+      // Add logic to start the race
+      console.log('Race started.');
+      // You can send a request to perform race start actions if needed
+    }
+
+    function endRace() {
+      // Add logic to end the race
+      console.log('Race ended.');
+      // You can send a request to perform race end actions if needed
+    }
   </script>
 </body>
 </html>
-
